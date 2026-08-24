@@ -7,54 +7,346 @@ interface Props {
 
 const {
 	title,
-	description = "Theoria — časopis Srpskog filozofskog društva",
+	description,
 	lang = "sr",
 } = Astro.props;
 
 const rawBase = import.meta.env.BASE_URL;
-const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
+
+const base = rawBase.endsWith("/")
+	? rawBase
+	: `${rawBase}/`;
 
 const isEnglish = lang === "en";
 
-const homeHref = isEnglish ? `${base}en/` : base;
+const resolvedDescription =
+	description ??
+	(isEnglish
+		? "Theoria — journal of the Serbian Philosophical Society"
+		: "Theoria — časopis Srpskog filozofskog društva");
+
+const homeHref = isEnglish
+	? `${base}en/`
+	: base;
 
 const nav = isEnglish
 	? [
-			{ label: "Home", href: `${base}en/` },
-			{ label: "Current issue", href: `${base}en/current-issue/` },
-			{ label: "Archive", href: `${base}en/archive/` },
-			{ label: "About", href: `${base}en/about/` },
-			{ label: "For authors", href: `${base}en/for-authors/` },
+			{
+				label: "Home",
+				href: `${base}en/`,
+			},
+			{
+				label: "Current issue",
+				href: `${base}en/current-issue/`,
+			},
+			{
+				label: "Archive",
+				href: `${base}en/archive/`,
+			},
+			{
+				label: "About",
+				href: `${base}en/about/`,
+			},
+			{
+				label: "For authors",
+				href: `${base}en/for-authors/`,
+			},
 		]
 	: [
-			{ label: "Početna", href: base },
-			{ label: "Aktuelni broj", href: `${base}aktuelni-broj/` },
-			{ label: "Arhiva", href: `${base}arhiva/` },
-			{ label: "O časopisu", href: `${base}o-casopisu/` },
-			{ label: "Za autore", href: `${base}uputstvo-autorima/` },
+			{
+				label: "Početna",
+				href: base,
+			},
+			{
+				label: "Aktuelni broj",
+				href: `${base}aktuelni-broj/`,
+			},
+			{
+				label: "Arhiva",
+				href: `${base}arhiva/`,
+			},
+			{
+				label: "O časopisu",
+				href: `${base}o-casopisu/`,
+			},
+			{
+				label: "Za autore",
+				href: `${base}uputstvo-autorima/`,
+			},
 		];
 
-const languageHref = isEnglish ? base : `${base}en/`;
-const languageLabel = isEnglish ? "SR" : "EN";
+/*
+ * Određivanje odgovarajuće stranice na drugom jeziku.
+ */
+
+const pathname = Astro.url.pathname;
+
+let relativePath = pathname.startsWith(base)
+	? pathname.slice(base.length)
+	: pathname.replace(/^\/+/, "");
+
+if (
+	relativePath !== "" &&
+	!relativePath.endsWith("/")
+) {
+	relativePath += "/";
+}
+
+let languageHref;
+
+if (isEnglish) {
+	if (relativePath === "en/") {
+		languageHref = base;
+	} else if (
+		relativePath === "en/current-issue/"
+	) {
+		languageHref = `${base}aktuelni-broj/`;
+	} else if (
+		relativePath === "en/archive/"
+	) {
+		languageHref = `${base}arhiva/`;
+	} else if (
+		relativePath === "en/about/"
+	) {
+		languageHref = `${base}o-casopisu/`;
+	} else if (
+		relativePath === "en/for-authors/"
+	) {
+		languageHref =
+			`${base}uputstvo-autorima/`;
+	} else if (
+		relativePath.startsWith("en/issues/")
+	) {
+		const slug = relativePath.slice(
+			"en/issues/".length,
+		);
+
+		languageHref =
+			`${base}brojevi/${slug}`;
+	} else {
+		languageHref = base;
+	}
+} else {
+	if (relativePath === "") {
+		languageHref = `${base}en/`;
+	} else if (
+		relativePath === "aktuelni-broj/"
+	) {
+		languageHref =
+			`${base}en/current-issue/`;
+	} else if (
+		relativePath === "arhiva/"
+	) {
+		languageHref =
+			`${base}en/archive/`;
+	} else if (
+		relativePath === "o-casopisu/"
+	) {
+		languageHref =
+			`${base}en/about/`;
+	} else if (
+		relativePath === "uputstvo-autorima/"
+	) {
+		languageHref =
+			`${base}en/for-authors/`;
+	} else if (
+		relativePath.startsWith("brojevi/")
+	) {
+		const slug = relativePath.slice(
+			"brojevi/".length,
+		);
+
+		languageHref =
+			`${base}en/issues/${slug}`;
+	} else {
+		languageHref = `${base}en/`;
+	}
+}
+
+const languageLabel = isEnglish
+	? "SR"
+	: "EN";
+
+/*
+ * SEO.
+ *
+ * Za sada Astro.site pokazuje na GitHub Pages.
+ * Kada konačno prebacimo theoria.rs, biće dovoljno
+ * promeniti site/base u astro.config.mjs.
+ */
+
+const siteOrigin =
+	Astro.site ?? Astro.url.origin;
+
+const canonicalURL = new URL(
+	Astro.url.pathname,
+	siteOrigin,
+);
+
+const ogImageURL = new URL(
+	`${base}theoria_og_1200x630.png`,
+	siteOrigin,
+);
+
+const locale = isEnglish
+	? "en_US"
+	: "sr_RS";
+
+const alternateLocale = isEnglish
+	? "sr_RS"
+	: "en_US";
 ---
 
 <!doctype html>
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content={description} />
 
-		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
 
 		<title>{title}</title>
+
+		<meta
+			name="description"
+			content={resolvedDescription}
+		/>
+
+		<meta
+			name="robots"
+			content="index, follow"
+		/>
+
+		<meta
+			name="theme-color"
+			content="#f5f2eb"
+		/>
+
+		<link
+			rel="canonical"
+			href={canonicalURL}
+		/>
+
+		<!-- Favicons -->
+
+		<link
+			rel="icon"
+			href={`${base}favicon.ico`}
+			sizes="any"
+		/>
+
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href={`${base}favicon.svg`}
+		/>
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="96x96"
+			href={`${base}favicon-96x96.png`}
+		/>
+
+		<link
+			rel="apple-touch-icon"
+			href={`${base}apple-touch-icon.png`}
+		/>
+
+		<link
+			rel="manifest"
+			href={`${base}site.webmanifest`}
+		/>
+
+		<!-- Open Graph -->
+
+		<meta
+			property="og:type"
+			content="website"
+		/>
+
+		<meta
+			property="og:site_name"
+			content="Theoria"
+		/>
+
+		<meta
+			property="og:title"
+			content={title}
+		/>
+
+		<meta
+			property="og:description"
+			content={resolvedDescription}
+		/>
+
+		<meta
+			property="og:url"
+			content={canonicalURL}
+		/>
+
+		<meta
+			property="og:image"
+			content={ogImageURL}
+		/>
+
+		<meta
+			property="og:image:width"
+			content="1200"
+		/>
+
+		<meta
+			property="og:image:height"
+			content="630"
+		/>
+
+		<meta
+			property="og:image:alt"
+			content="Theoria — Serbian Philosophical Society"
+		/>
+
+		<meta
+			property="og:locale"
+			content={locale}
+		/>
+
+		<meta
+			property="og:locale:alternate"
+			content={alternateLocale}
+		/>
+
+		<!-- X / Twitter -->
+
+		<meta
+			name="twitter:card"
+			content="summary_large_image"
+		/>
+
+		<meta
+			name="twitter:title"
+			content={title}
+		/>
+
+		<meta
+			name="twitter:description"
+			content={resolvedDescription}
+		/>
+
+		<meta
+			name="twitter:image"
+			content={ogImageURL}
+		/>
 	</head>
 
 	<body>
 		<header>
 			<div class="site-container header-inner">
 				<div class="brand">
-					<a href={homeHref}>THEORIA</a>
+					<a href={homeHref}>
+						THEORIA
+					</a>
 
 					<p>
 						{
@@ -66,15 +358,32 @@ const languageLabel = isEnglish ? "SR" : "EN";
 				</div>
 
 				<div class="navigation">
-					<nav aria-label={isEnglish ? "Main navigation" : "Glavna navigacija"}>
+					<nav
+						aria-label={
+							isEnglish
+								? "Main navigation"
+								: "Glavna navigacija"
+						}
+					>
 						{
 							nav.map((item) => (
-								<a href={item.href}>{item.label}</a>
+								<a href={item.href}>
+									{item.label}
+								</a>
 							))
 						}
 					</nav>
 
-					<a class="language" href={languageHref}>
+					<a
+						class="language"
+						href={languageHref}
+						lang={isEnglish ? "sr" : "en"}
+						aria-label={
+							isEnglish
+								? "Srpska verzija"
+								: "English version"
+						}
+					>
 						{languageLabel}
 					</a>
 				</div>
@@ -193,6 +502,10 @@ const languageLabel = isEnglish ? "SR" : "EN";
 			align-items: flex-start;
 			flex-direction: column;
 			gap: 14px;
+		}
+
+		nav {
+			gap: 16px;
 		}
 
 		.language {

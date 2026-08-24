@@ -1,0 +1,265 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="About — Theoria"
+	description="About Theoria, journal of the Serbian Philosophical Society"
+	lang="en"
+>
+	<main class="container">
+		<section class="heading">
+			<p class="label">THEORIA</p>
+			<h1>About</h1>
+
+			<p class="lead">
+				<em>Theoria</em> is the philosophical journal of the Serbian
+				Philosophical Society, publishing original scholarly work
+				across philosophical fields and traditions.
+			</p>
+		</section>
+
+		<section class="identifiers">
+			<div>
+				<p class="label">ISSN · PRINT</p>
+				<p class="value">0351-2274</p>
+			</div>
+
+			<div>
+				<p class="label">ISSN · ONLINE</p>
+				<p class="value">2406-081X</p>
+			</div>
+
+			<div>
+				<p class="label">COBISS.SR-ID</p>
+				<p class="value">556303</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div>
+				<p class="label">HISTORY</p>
+			</div>
+
+			<div class="prose">
+				<p>
+					Following a two-year interruption in the publication of
+					<em>Filosofija</em>, an extraordinary assembly of the
+					Philosophical Society of Serbia, held on 9 May 1976,
+					elected a new publishing council, editorial board and
+					Editor-in-Chief. It was then decided that the new journal
+					would be titled <em>Theoria</em>. Its first Editor-in-Chief
+					and responsible editor was Aleksandar Kron.
+				</p>
+
+				<p>
+					Since 1976, <em>Theoria</em> has been published without
+					interruption. Initially it appeared twice a year as a
+					double issue; by the early 1980s it had moved to four
+					issues annually.
+				</p>
+
+				<p>
+					From 1991 onward, <em>Theoria</em> has been a philosophical
+					journal in the strict sense. Over its history it has
+					published original scholarly articles, translations,
+					reviews and critical discussions while remaining open to
+					different philosophical schools and approaches.
+				</p>
+
+				<p>
+					In 2026, <em>Theoria</em> marks fifty years of continuous
+					publication.
+				</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div>
+				<p class="label">EDITOR-IN-CHIEF</p>
+			</div>
+
+			<div class="prose">
+				<h2>Aleksandra Zorić</h2>
+
+				<p>
+					Faculty of Philosophy, University of Belgrade
+				</p>
+
+				<p>
+					<a href="mailto:theoria.redakcija@gmail.com">
+						theoria.redakcija@gmail.com
+					</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div>
+				<p class="label">EDITORIAL BOARD</p>
+			</div>
+
+			<div class="board">
+				<p>
+					<strong>Nebojša Grubor</strong><br />
+					Faculty of Philosophy, University of Belgrade
+				</p>
+
+				<p>
+					<strong>Aleksandar Dobrijević</strong><br />
+					Faculty of Philosophy, University of Belgrade
+				</p>
+
+				<p>
+					<strong>Una Popović</strong><br />
+					Faculty of Philosophy, University of Novi Sad
+				</p>
+
+				<p>
+					<strong>Predrag Milidrag</strong><br />
+					Institute of Social Sciences, Belgrade
+				</p>
+
+				<p>
+					<strong>Goran Rujević</strong><br />
+					Faculty of Philosophy, University of Novi Sad
+				</p>
+
+				<p>
+					<strong>Mašan Bogdanovski</strong><br />
+					Faculty of Philosophy, University of Belgrade
+				</p>
+
+				<p>
+					<strong>Radmila Jovanović Kozlovski</strong><br />
+					Faculty of Philosophy, University of Belgrade
+				</p>
+
+				<p>
+					<strong>Višnja Knežević</strong><br />
+					Institute for Philosophy, Faculty of Philosophy,
+					University of Belgrade
+				</p>
+
+				<p>
+					<strong>Neven Cvetićanin</strong><br />
+					Institute of Social Sciences, Belgrade
+				</p>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.container {
+		width: min(1120px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.heading {
+		padding: 90px 0 70px;
+		border-bottom: 1px solid #bcb7ac;
+	}
+
+	.label {
+		margin: 0 0 22px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.17em;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: clamp(4rem, 9vw, 7rem);
+		line-height: 0.95;
+		font-weight: 400;
+		letter-spacing: -0.04em;
+	}
+
+	.lead {
+		max-width: 760px;
+		margin: 35px 0 0;
+		font-size: 1.35rem;
+		line-height: 1.55;
+	}
+
+	.identifiers {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		border-bottom: 1px solid #bcb7ac;
+	}
+
+	.identifiers > div {
+		padding: 36px 30px 36px 0;
+	}
+
+	.identifiers > div + div {
+		padding-left: 30px;
+		border-left: 1px solid #bcb7ac;
+	}
+
+	.value {
+		margin: 0;
+		font-size: 1.6rem;
+	}
+
+	.section {
+		display: grid;
+		grid-template-columns: 220px 1fr;
+		gap: 60px;
+		padding: 65px 0;
+		border-bottom: 1px solid #bcb7ac;
+	}
+
+	.prose {
+		max-width: 760px;
+	}
+
+	.prose p {
+		font-size: 1.1rem;
+		line-height: 1.7;
+	}
+
+	.prose h2 {
+		margin: 0;
+		font-size: 2rem;
+		font-weight: 400;
+	}
+
+	.prose a {
+		color: inherit;
+	}
+
+	.board {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0 50px;
+	}
+
+	.board p {
+		margin: 0;
+		padding: 20px 0;
+		border-bottom: 1px solid #c9c4ba;
+		line-height: 1.5;
+	}
+
+	@media (max-width: 800px) {
+		.identifiers,
+		.board {
+			grid-template-columns: 1fr;
+		}
+
+		.identifiers > div,
+		.identifiers > div + div {
+			padding: 28px 0;
+			border-left: 0;
+			border-bottom: 1px solid #bcb7ac;
+		}
+
+		.section {
+			grid-template-columns: 1fr;
+			gap: 25px;
+		}
+	}
+</style>
