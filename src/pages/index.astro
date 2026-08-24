@@ -106,20 +106,21 @@ const current = issues[0];
 	}
 
 	.intro h1 {
-		max-width: 900px;
-		margin: 0;
+	max-width: 900px;
+	margin: 0;
 
-		font-size: clamp(3.1rem, 7vw, 6.5rem);
-		font-weight: 400;
-		line-height: 0.95;
+	font-size: clamp(3.1rem, 7vw, 6.5rem);
+	font-weight: 400;
+line-height: 1.04;
 
-		letter-spacing: -0.025em;
-
-		font-variant-ligatures: none;
-		font-feature-settings:
-			"liga" 0,
-			"clig" 0;
-	}
+letter-spacing: 0;
+	font-kerning: none;
+	font-variant-ligatures: none;
+	font-feature-settings:
+		"liga" 0,
+		"clig" 0,
+		"kern" 0;
+}
 
 	.lead {
 		max-width: 650px;
