@@ -15,58 +15,26 @@ const internalIssues = issues.map((issue) => ({
 	label: "Sadržaj",
 }));
 
-const years = [
-	{
-		year: 2026,
-		volume: 69,
-		issues: internalIssues
-			.filter((issue) => issue.year === 2026)
-			.map(({ number, href, type, label }) => ({
-				number,
-				href,
-				type,
-				label,
-			})),
-	},
-	{
-		year: 2025,
-		volume: 68,
-		issues: [
-			...internalIssues
-				.filter((issue) => issue.year === 2025)
-				.map(({ number, href, type, label }) => ({
+const years = [...new Set(internalIssues.map((issue) => issue.year))]
+	.sort((a, b) => b - a)
+	.map((year) => {
+		const yearIssues = internalIssues.filter(
+			(issue) => issue.year === year,
+		);
+
+		return {
+			year,
+			volume: yearIssues[0].volume,
+			issues: yearIssues.map(
+				({ number, href, type, label }) => ({
 					number,
 					href,
 					type,
 					label,
-				})),
-		],
-	},
-	{
-	year: 2024,
-	volume: 67,
-	issues: internalIssues
-		.filter((issue) => issue.year === 2024)
-		.map(({ number, href, type, label }) => ({
-			number,
-			href,
-			type,
-			label,
-		})),
-},
-{
-  year: 2023,
-  volume: 66,
-  issues: internalIssues
-    .filter((issue) => issue.year === 2023)
-    .map(({ number, href, type, label }) => ({
-      number,
-      href,
-      type,
-      label,
-    })),
-},
-];
+				}),
+			),
+		};
+	});
 ---
 
 <BaseLayout
