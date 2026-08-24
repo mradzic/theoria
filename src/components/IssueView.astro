@@ -11,16 +11,20 @@ const isEnglish = lang === "en";
 
 const ui = isEnglish
 	? {
-			description: "Theoria — journal of the Serbian Philosophical Society",
-			intro: "journal of the Serbian Philosophical Society.",
+			description:
+				"journal of the Serbian Philosophical Society",
+			intro:
+				"journal of the Serbian Philosophical Society.",
 			fullPdf: "Full issue · PDF ↗",
 			source: "DOI Serbia · issue ↗",
 			introduction: "INTRODUCTION",
 			archive: "← Archive",
 		}
 	: {
-			description: "Theoria — časopis Srpskog filozofskog društva",
-			intro: "časopis Srpskog filozofskog društva.",
+			description:
+				"časopis Srpskog filozofskog društva",
+			intro:
+				"časopis Srpskog filozofskog društva.",
 			fullPdf: "Ceo broj · PDF ↗",
 			source: "DOI Serbia · broj ↗",
 			introduction: "UVOD",
@@ -30,6 +34,19 @@ const ui = isEnglish
 const archiveHref = isEnglish
 	? `${base}en/archive/`
 	: `${base}arhiva/`;
+
+const sectionTitle = (title) => {
+	if (!isEnglish) return title;
+
+	const translations = {
+		"Članci": "Articles",
+		"ČLANCI": "ARTICLES",
+		"Uvod": "Introduction",
+		"UVOD": "INTRODUCTION",
+	};
+
+	return translations[title] ?? title;
+};
 ---
 
 <BaseLayout
@@ -43,50 +60,62 @@ const archiveHref = isEnglish
 
 			<div class="issue-title">
 				<div>
-					<h1>Vol. {issue.volume}, No. {issue.number}</h1>
+					<h1>
+						Vol. {issue.volume}, No. {issue.number}
+					</h1>
+
 					<p class="year">{issue.year}</p>
 				</div>
 
 				{
-	issue.pdf ? (
-		<a
-			class="pdf-button"
-			href={issue.pdf}
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			{ui.fullPdf}
-		</a>
-	) : issue.source ? (
-		<a
-			class="pdf-button"
-			href={issue.source}
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			{ui.source}
-		</a>
-	) : null
-}
+					issue.pdf ? (
+						<a
+							class="pdf-button"
+							href={issue.pdf}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{ui.fullPdf}
+						</a>
+					) : issue.source ? (
+						<a
+							class="pdf-button"
+							href={issue.source}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{ui.source}
+						</a>
+					) : null
+				}
 			</div>
 
-		<p class="intro">
-	<em>Theoria</em>, {ui.intro.replace("Theoria, ", "")}
-</p>
+			<p class="intro">
+				<em>Theoria</em>, {ui.intro}
+			</p>
 		</section>
 
 		{
 			issue.editorial && (
 				<section class="editorial">
-					<p class="label">{ui.introduction}</p>
+					<p class="label">
+						{ui.introduction}
+					</p>
 
 					<div class="editorial-row">
 						<div>
-							<h2>{issue.editorial.title}</h2>
-							<p>{issue.editorial.authors.join(" · ")}</p>
+							<h2>
+								{issue.editorial.title}
+							</h2>
+
+							<p>
+								{issue.editorial.authors.join(" · ")}
+							</p>
 						</div>
 
-						<p class="pages">{issue.editorial.pages}</p>
+						<p class="pages">
+							{issue.editorial.pages}
+						</p>
 					</div>
 				</section>
 			)
@@ -95,14 +124,18 @@ const archiveHref = isEnglish
 		{
 			issue.sections.map((section) => (
 				<section class="contents">
-					<h2 class="section-title">{section.title}</h2>
+					<h2 class="section-title">
+						{sectionTitle(section.title)}
+					</h2>
 
 					<ol>
 						{section.articles.map((article) => (
 							<li>
 								<div class="article">
 									<div class="article-main">
-										<h3>{article.title}</h3>
+										<h3>
+											{article.title}
+										</h3>
 
 										<p class="authors">
 											{article.authors.join(" · ")}
@@ -110,7 +143,9 @@ const archiveHref = isEnglish
 									</div>
 
 									<div class="article-meta">
-										<p>{article.pages}</p>
+										<p>
+											{article.pages}
+										</p>
 
 										{
 											article.doi && (
@@ -133,7 +168,9 @@ const archiveHref = isEnglish
 		}
 
 		<div class="back">
-			<a href={archiveHref}>{ui.archive}</a>
+			<a href={archiveHref}>
+				{ui.archive}
+			</a>
 		</div>
 	</main>
 </BaseLayout>
@@ -285,6 +322,10 @@ const archiveHref = isEnglish
 		border-bottom: 1px solid #181818;
 	}
 
+	.article-meta a:hover {
+		opacity: 0.65;
+	}
+
 	.back {
 		padding: 60px 0 90px;
 		font-family: Arial, Helvetica, sans-serif;
@@ -301,13 +342,13 @@ const archiveHref = isEnglish
 	}
 
 	@media (max-width: 800px) {
+		.issue-heading {
+			padding: 60px 0 50px;
+		}
+
 		.issue-title {
 			align-items: flex-start;
 			flex-direction: column;
-		}
-
-		.issue-heading {
-			padding: 60px 0 50px;
 		}
 
 		.editorial-row {
