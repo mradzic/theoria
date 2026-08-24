@@ -22,14 +22,27 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 					<p class="year">{issue.year}</p>
 				</div>
 
-				<a
-					class="pdf-button"
-					href={issue.pdf}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Ceo broj · PDF ↗
-				</a>
+				{
+	issue.pdf ? (
+		<a
+			class="pdf-button"
+			href={issue.pdf}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			Ceo broj · PDF ↗
+		</a>
+	) : issue.source ? (
+		<a
+			class="pdf-button"
+			href={issue.source}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			DOI Serbia · broj ↗
+		</a>
+	) : null
+}
 			</div>
 
 			<p class="intro">
