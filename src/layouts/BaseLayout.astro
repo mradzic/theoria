@@ -1,0 +1,133 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+	lang?: string;
+}
+
+const {
+	title,
+	description = "Theoria — časopis Srpskog filozofskog društva",
+	lang = "sr",
+} = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+
+		<title>{title}</title>
+	</head>
+
+	<body>
+		<header>
+			<div class="site-container header-inner">
+				<div class="brand">
+					<a href={base}>THEORIA</a>
+					<p>Časopis Srpskog filozofskog društva</p>
+				</div>
+
+				<nav aria-label="Glavna navigacija">
+					<a href={base}>Početna</a>
+					<a href={`${base}aktuelni-broj/`}>Aktuelni broj</a>
+					<a href={`${base}arhiva/`}>Arhiva</a>
+					<a href={`${base}o-casopisu/`}>O časopisu</a>
+					<a href={`${base}uputstvo-autorima/`}>Za autore</a>
+				</nav>
+			</div>
+		</header>
+
+		<slot />
+
+		<footer>
+			<div class="site-container">
+				<p>THEORIA · Srpsko filozofsko društvo · Beograd</p>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style>
+	:global(*) {
+		box-sizing: border-box;
+	}
+
+	:global(html) {
+		background: #f5f2eb;
+	}
+
+	:global(body) {
+		margin: 0;
+		background: #f5f2eb;
+		color: #181818;
+		font-family: Georgia, "Times New Roman", serif;
+	}
+
+	.site-container {
+		width: min(1120px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	header {
+		border-bottom: 1px solid #bcb7ac;
+		padding: 32px 0 22px;
+	}
+
+	.header-inner {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 40px;
+	}
+
+	.brand > a {
+		color: inherit;
+		text-decoration: none;
+		font-size: 3rem;
+		font-weight: 400;
+		letter-spacing: 0.12em;
+	}
+
+	.brand p {
+		margin: 5px 0 0;
+		font-size: 0.95rem;
+	}
+
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 24px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 0.85rem;
+	}
+
+	nav a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	nav a:hover {
+		text-decoration: underline;
+	}
+
+	footer {
+		border-top: 1px solid #bcb7ac;
+		padding: 28px 0;
+		font-size: 0.85rem;
+	}
+
+	@media (max-width: 800px) {
+		.header-inner {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+</style>

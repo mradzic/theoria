@@ -1,121 +1,48 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+	? import.meta.env.BASE_URL
+	: `${import.meta.env.BASE_URL}/`;
 ---
 
-<!doctype html>
-<html lang="sr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta
-			name="description"
-			content="Theoria — časopis Srpskog filozofskog društva"
-		/>
-		<title>Theoria — Srpsko filozofsko društvo</title>
-	</head>
+<BaseLayout
+	title="Theoria — Srpsko filozofsko društvo"
+	description="Theoria — časopis Srpskog filozofskog društva"
+>
+	<main class="container">
+		<section class="intro">
+			<p class="label">THEORIA · BEOGRAD</p>
 
-	<body>
-		<header>
-			<div class="container">
-				<div class="brand">
-					<h1>THEORIA</h1>
-					<p>Časopis Srpskog filozofskog društva</p>
-				</div>
+			<h1>
+				Filozofski časopis<br />
+				Srpskog filozofskog<br />
+				društva
+			</h1>
 
-				<nav>
-					<a href="/">Početna</a>
-					<a href="/aktuelni-broj">Aktuelni broj</a>
-					<a href="/arhiva">Arhiva</a>
-					<a href="/o-casopisu">O časopisu</a>
-					<a href="/uputstvo-autorima">Za autore</a>
-				</nav>
-			</div>
-		</header>
+			<p class="lead">
+				Theoria objavljuje originalne radove iz svih oblasti filozofije.
+			</p>
+		</section>
 
-		<main class="container">
-			<section class="intro">
-				<p class="label">THEORIA · BEOGRAD</p>
-				<h2>Filozofski časopis<br />Srpskog filozofskog društva</h2>
-				<p class="lead">
-					Theoria objavljuje originalne radove iz svih oblasti filozofije.
-				</p>
-			</section>
+		<section class="current">
+			<p class="label">AKTUELNI BROJ</p>
 
-			<section class="current">
-				<p class="label">AKTUELNI BROJ</p>
-				<h3>Vol. 69, No. 1 · 2026</h3>
-				<p>Najnoviji broj časopisa Theoria.</p>
-				<a class="button" href="/aktuelni-broj">Pogledaj sadržaj →</a>
-			</section>
-		</main>
+			<h2>Vol. 69, No. 2 · 2026</h2>
 
-		<footer>
-			<div class="container">
-				<p>THEORIA · Srpsko filozofsko društvo · Beograd</p>
-			</div>
-		</footer>
-	</body>
-</html>
+			<p>Najnoviji broj časopisa Theoria.</p>
+
+			<a class="button" href={`${base}aktuelni-broj/`}>
+				Pogledaj sadržaj →
+			</a>
+		</section>
+	</main>
+</BaseLayout>
 
 <style>
-	:global(*) {
-		box-sizing: border-box;
-	}
-
-	:global(body) {
-		margin: 0;
-		background: #f5f2eb;
-		color: #181818;
-		font-family: Georgia, "Times New Roman", serif;
-	}
-
 	.container {
 		width: min(1120px, calc(100% - 48px));
 		margin: 0 auto;
-	}
-
-	header {
-		border-bottom: 1px solid #bcb7ac;
-		padding: 32px 0 22px;
-	}
-
-	header .container {
-		display: flex;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: 40px;
-	}
-
-	.brand h1 {
-		font-size: 3rem;
-		font-weight: 400;
-		letter-spacing: 0.12em;
-		margin: 0;
-	}
-
-	.brand p {
-		margin: 5px 0 0;
-		font-size: 0.95rem;
-	}
-
-	nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 24px;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.85rem;
-	}
-
-	nav a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	nav a:hover {
-		text-decoration: underline;
-	}
-
-	main {
-		min-height: 70vh;
 	}
 
 	.intro {
@@ -131,7 +58,7 @@
 		margin-bottom: 24px;
 	}
 
-	.intro h2 {
+	.intro h1 {
 		max-width: 850px;
 		font-size: clamp(3rem, 7vw, 6.5rem);
 		line-height: 0.95;
@@ -151,7 +78,7 @@
 		padding: 70px 0 90px;
 	}
 
-	.current h3 {
+	.current h2 {
 		font-size: 2.5rem;
 		font-weight: 400;
 		margin: 0 0 12px;
@@ -177,18 +104,7 @@
 		color: #f5f2eb;
 	}
 
-	footer {
-		border-top: 1px solid #bcb7ac;
-		padding: 28px 0;
-		font-size: 0.85rem;
-	}
-
 	@media (max-width: 800px) {
-		header .container {
-			align-items: flex-start;
-			flex-direction: column;
-		}
-
 		.intro {
 			padding: 65px 0;
 		}
