@@ -31,53 +31,19 @@ const homeHref = isEnglish
 
 const nav = isEnglish
 	? [
-			{
-				label: "Home",
-				href: `${base}en/`,
-			},
-			{
-				label: "Current issue",
-				href: `${base}en/current-issue/`,
-			},
-			{
-				label: "Archive",
-				href: `${base}en/archive/`,
-			},
-			{
-				label: "About",
-				href: `${base}en/about/`,
-			},
-			{
-				label: "For authors",
-				href: `${base}en/for-authors/`,
-			},
+			{ label: "Home", href: `${base}en/` },
+			{ label: "Current issue", href: `${base}en/current-issue/` },
+			{ label: "Archive", href: `${base}en/archive/` },
+			{ label: "About", href: `${base}en/about/` },
+			{ label: "For authors", href: `${base}en/for-authors/` },
 		]
 	: [
-			{
-				label: "Početna",
-				href: base,
-			},
-			{
-				label: "Aktuelni broj",
-				href: `${base}aktuelni-broj/`,
-			},
-			{
-				label: "Arhiva",
-				href: `${base}arhiva/`,
-			},
-			{
-				label: "O časopisu",
-				href: `${base}o-casopisu/`,
-			},
-			{
-				label: "Za autore",
-				href: `${base}uputstvo-autorima/`,
-			},
+			{ label: "Početna", href: base },
+			{ label: "Aktuelni broj", href: `${base}aktuelni-broj/` },
+			{ label: "Arhiva", href: `${base}arhiva/` },
+			{ label: "O časopisu", href: `${base}o-casopisu/` },
+			{ label: "Za autore", href: `${base}uputstvo-autorima/` },
 		];
-
-/*
- * Određivanje odgovarajuće stranice na drugom jeziku.
- */
 
 const pathname = Astro.url.pathname;
 
@@ -167,13 +133,32 @@ const languageLabel = isEnglish
 	? "SR"
 	: "EN";
 
-/*
- * SEO.
- *
- * Za sada Astro.site pokazuje na GitHub Pages.
- * Kada konačno prebacimo theoria.rs, biće dovoljno
- * promeniti site/base u astro.config.mjs.
- */
+const normalisePath = (value: string) => {
+	const url = new URL(value, Astro.url.origin);
+	return url.pathname.endsWith("/")
+		? url.pathname
+		: `${url.pathname}/`;
+};
+
+const currentPath = pathname.endsWith("/")
+	? pathname
+	: `${pathname}/`;
+
+const isActive = (href: string) => {
+	const target = normalisePath(href);
+
+	if (target === base) {
+		return currentPath === base;
+	}
+
+	if (target === `${base}en/`) {
+		return currentPath === `${base}en/`;
+	}
+
+	return currentPath.startsWith(target);
+};
+
+/* SEO */
 
 const siteOrigin =
 	Astro.site ?? Astro.url.origin;
@@ -221,15 +206,13 @@ const alternateLocale = isEnglish
 
 		<meta
 			name="theme-color"
-			content="#f5f2eb"
+			content="#f3efe7"
 		/>
 
 		<link
 			rel="canonical"
 			href={canonicalURL}
 		/>
-
-		<!-- Favicons -->
 
 		<link
 			rel="icon"
@@ -259,8 +242,6 @@ const alternateLocale = isEnglish
 			rel="manifest"
 			href={`${base}site.webmanifest`}
 		/>
-
-		<!-- Open Graph -->
 
 		<meta
 			property="og:type"
@@ -317,8 +298,6 @@ const alternateLocale = isEnglish
 			content={alternateLocale}
 		/>
 
-		<!-- X / Twitter -->
-
 		<meta
 			name="twitter:card"
 			content="summary_large_image"
@@ -341,14 +320,14 @@ const alternateLocale = isEnglish
 	</head>
 
 	<body>
-		<header>
+		<header class="site-header">
 			<div class="site-container header-inner">
 				<div class="brand">
-					<a href={homeHref}>
+					<a class="wordmark" href={homeHref}>
 						THEORIA
 					</a>
 
-					<p>
+					<p class="tagline">
 						{
 							isEnglish
 								? "Journal of the Serbian Philosophical Society"
@@ -367,7 +346,13 @@ const alternateLocale = isEnglish
 					>
 						{
 							nav.map((item) => (
-								<a href={item.href}>
+								<a
+									href={item.href}
+									class:list={[
+										"nav-link",
+										{ active: isActive(item.href) },
+									]}
+								>
 									{item.label}
 								</a>
 							))
@@ -392,125 +377,330 @@ const alternateLocale = isEnglish
 
 		<slot />
 
-		<footer>
-			<div class="site-container">
-				<p>
-					{
-						isEnglish
-							? "THEORIA · Serbian Philosophical Society · Belgrade"
-							: "THEORIA · Srpsko filozofsko društvo · Beograd"
-					}
-				</p>
+		<footer class="site-footer">
+			<div class="site-container footer-inner">
+				<div>
+					<p class="footer-name">
+						THEORIA
+					</p>
+
+					<p class="footer-description">
+						{
+							isEnglish
+								? "Serbian Philosophical Society · Belgrade"
+								: "Srpsko filozofsko društvo · Beograd"
+						}
+					</p>
+				</div>
+
+				<div class="footer-meta">
+					<p>ISSN 0351-2274</p>
+					<p>eISSN 2406-081X</p>
+				</div>
 			</div>
 		</footer>
 	</body>
 </html>
 
 <style>
+	:global(:root) {
+		--paper: #f3efe7;
+		--ink: #171715;
+		--muted: #6f6a61;
+		--rule: #bdb7ac;
+		--rule-light: #cec8bd;
+
+		--page-width: 1160px;
+		--page-padding: 48px;
+
+		--serif:
+			Georgia,
+			"Times New Roman",
+			Times,
+			serif;
+
+		--sans:
+			Arial,
+			Helvetica,
+			sans-serif;
+	}
+
 	:global(*) {
 		box-sizing: border-box;
 	}
 
 	:global(html) {
-		background: #f5f2eb;
+		background: var(--paper);
+		scroll-behavior: smooth;
 	}
 
 	:global(body) {
 		margin: 0;
-		background: #f5f2eb;
-		color: #181818;
-		font-family: Georgia, "Times New Roman", serif;
+		background: var(--paper);
+		color: var(--ink);
+		font-family: var(--serif);
+		font-kerning: normal;
+		font-variant-ligatures:
+			common-ligatures contextual;
+		text-rendering: optimizeLegibility;
+	}
+
+	:global(a) {
+		color: inherit;
+	}
+
+	:global(::selection) {
+		background: var(--ink);
+		color: var(--paper);
 	}
 
 	.site-container {
-		width: min(1120px, calc(100% - 48px));
-		margin: 0 auto;
+		width: min(
+			var(--page-width),
+			calc(100% - var(--page-padding))
+		);
+
+		margin-inline: auto;
 	}
 
-	header {
-		border-bottom: 1px solid #bcb7ac;
-		padding: 32px 0 22px;
+	/* HEADER */
+
+	.site-header {
+		border-bottom: 1px solid var(--rule);
 	}
 
 	.header-inner {
+		min-height: 138px;
+
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
 		justify-content: space-between;
-		gap: 40px;
+
+		gap: 64px;
 	}
 
-	.brand > a {
+	.brand {
+		flex: 0 0 auto;
+	}
+
+	.wordmark {
+		display: inline-block;
+
 		color: inherit;
 		text-decoration: none;
-		font-size: 3rem;
+
+		font-size: clamp(2.65rem, 4vw, 3.35rem);
 		font-weight: 400;
-		letter-spacing: 0.12em;
+		line-height: 0.95;
+
+		letter-spacing: 0.145em;
 	}
 
-	.brand p {
-		margin: 5px 0 0;
-		font-size: 0.95rem;
+	.tagline {
+		margin: 10px 0 0;
+
+		color: var(--ink);
+
+		font-size: 0.91rem;
+		line-height: 1.2;
 	}
 
 	.navigation {
 		display: flex;
 		align-items: center;
-		gap: 24px;
+
+		gap: 28px;
 	}
 
 	nav {
 		display: flex;
+		align-items: center;
 		flex-wrap: wrap;
-		gap: 24px;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.85rem;
+
+		gap: 26px;
+
+		font-family: var(--sans);
+		font-size: 0.78rem;
 	}
 
-	nav a,
-	.language {
+	.nav-link {
+		position: relative;
+
+		padding: 8px 0;
+
 		color: inherit;
 		text-decoration: none;
+
+		white-space: nowrap;
 	}
 
-	nav a:hover,
-	.language:hover {
-		text-decoration: underline;
+	.nav-link::after {
+		content: "";
+
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 1px;
+
+		height: 1px;
+
+		background: currentColor;
+
+		transform: scaleX(0);
+		transform-origin: left;
+
+		transition: transform 140ms ease;
+	}
+
+	.nav-link:hover::after,
+	.nav-link.active::after {
+		transform: scaleX(1);
 	}
 
 	.language {
-		padding-left: 20px;
-		border-left: 1px solid #bcb7ac;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.72rem;
+		flex: 0 0 auto;
+
+		padding-left: 22px;
+
+		border-left: 1px solid var(--rule);
+
+		color: inherit;
+		text-decoration: none;
+
+		font-family: var(--sans);
+		font-size: 0.67rem;
 		font-weight: 700;
-		letter-spacing: 0.08em;
+
+		letter-spacing: 0.16em;
 	}
 
-	footer {
-		border-top: 1px solid #bcb7ac;
-		padding: 28px 0;
-		font-size: 0.85rem;
+	.language:hover {
+		opacity: 0.55;
 	}
 
-	@media (max-width: 800px) {
+	/* FOOTER */
+
+	.site-footer {
+		margin-top: 20px;
+
+		border-top: 1px solid var(--rule);
+
+		padding: 42px 0 48px;
+	}
+
+	.footer-inner {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+
+		gap: 40px;
+	}
+
+	.footer-name {
+		margin: 0;
+
+		font-size: 1rem;
+		letter-spacing: 0.15em;
+	}
+
+	.footer-description {
+		margin: 9px 0 0;
+
+		color: var(--muted);
+
+		font-size: 0.83rem;
+	}
+
+	.footer-meta {
+		display: flex;
+		gap: 22px;
+
+		color: var(--muted);
+
+		font-family: var(--sans);
+		font-size: 0.68rem;
+
+		letter-spacing: 0.04em;
+	}
+
+	.footer-meta p {
+		margin: 0;
+	}
+
+	/* TABLET */
+
+	@media (max-width: 900px) {
 		.header-inner {
+			min-height: auto;
+
+			padding: 30px 0 24px;
+
 			align-items: flex-start;
 			flex-direction: column;
+
+			gap: 28px;
+		}
+
+		.navigation {
+			width: 100%;
+
+			justify-content: space-between;
+
+			gap: 20px;
+		}
+
+		nav {
+			gap: 20px;
+		}
+	}
+
+	/* MOBILE */
+
+	@media (max-width: 620px) {
+		:global(:root) {
+			--page-padding: 32px;
+		}
+
+		.wordmark {
+			font-size: 2.45rem;
+		}
+
+		.tagline {
+			font-size: 0.82rem;
 		}
 
 		.navigation {
 			align-items: flex-start;
-			flex-direction: column;
-			gap: 14px;
 		}
 
 		nav {
-			gap: 16px;
+			display: grid;
+			grid-template-columns: repeat(2, max-content);
+
+			gap: 8px 22px;
+		}
+
+		.nav-link {
+			padding: 4px 0;
 		}
 
 		.language {
-			padding-left: 0;
-			border-left: 0;
+			margin-top: 4px;
+
+			padding-left: 16px;
+		}
+
+		.footer-inner {
+			align-items: flex-start;
+			flex-direction: column;
+
+			gap: 25px;
+		}
+
+		.footer-meta {
+			flex-direction: column;
+
+			gap: 5px;
 		}
 	}
 </style>
