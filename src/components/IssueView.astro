@@ -1,16 +1,41 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const { issue } = Astro.props;
+const { issue, lang = "sr" } = Astro.props;
 
 const base = import.meta.env.BASE_URL.endsWith("/")
 	? import.meta.env.BASE_URL
 	: `${import.meta.env.BASE_URL}/`;
+
+const isEnglish = lang === "en";
+
+const ui = isEnglish
+	? {
+			description: "Theoria — journal of the Serbian Philosophical Society",
+			intro: "journal of the Serbian Philosophical Society.",
+			fullPdf: "Full issue · PDF ↗",
+			source: "DOI Serbia · issue ↗",
+			introduction: "INTRODUCTION",
+			archive: "← Archive",
+		}
+	: {
+			description: "Theoria — časopis Srpskog filozofskog društva",
+			intro: "časopis Srpskog filozofskog društva.",
+			fullPdf: "Ceo broj · PDF ↗",
+			source: "DOI Serbia · broj ↗",
+			introduction: "UVOD",
+			archive: "← Arhiva",
+		};
+
+const archiveHref = isEnglish
+	? `${base}en/archive/`
+	: `${base}arhiva/`;
 ---
 
 <BaseLayout
 	title={`${issue.label} — Theoria`}
-	description={`Theoria ${issue.label} — časopis Srpskog filozofskog društva`}
+	description={`Theoria ${issue.label} — ${ui.description}`}
+	lang={lang}
 >
 	<main class="container">
 		<section class="issue-heading">
@@ -30,7 +55,7 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 			target="_blank"
 			rel="noopener noreferrer"
 		>
-			Ceo broj · PDF ↗
+			{ui.fullPdf}
 		</a>
 	) : issue.source ? (
 		<a
@@ -39,21 +64,21 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 			target="_blank"
 			rel="noopener noreferrer"
 		>
-			DOI Serbia · broj ↗
+			{ui.source}
 		</a>
 	) : null
 }
 			</div>
 
-			<p class="intro">
-				<em>Theoria</em>, časopis Srpskog filozofskog društva.
-			</p>
+		<p class="intro">
+	<em>Theoria</em>, {ui.intro.replace("Theoria, ", "")}
+</p>
 		</section>
 
 		{
 			issue.editorial && (
 				<section class="editorial">
-					<p class="label">UVOD</p>
+					<p class="label">{ui.introduction}</p>
 
 					<div class="editorial-row">
 						<div>
@@ -108,7 +133,7 @@ const base = import.meta.env.BASE_URL.endsWith("/")
 		}
 
 		<div class="back">
-			<a href={`${base}arhiva/`}>← Arhiva</a>
+			<a href={archiveHref}>{ui.archive}</a>
 		</div>
 	</main>
 </BaseLayout>

@@ -2,7 +2,7 @@
 interface Props {
 	title: string;
 	description?: string;
-	lang?: string;
+	lang?: "sr" | "en";
 }
 
 const {
@@ -13,6 +13,29 @@ const {
 
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
+
+const isEnglish = lang === "en";
+
+const homeHref = isEnglish ? `${base}en/` : base;
+
+const nav = isEnglish
+	? [
+			{ label: "Home", href: `${base}en/` },
+			{ label: "Current issue", href: `${base}en/current-issue/` },
+			{ label: "Archive", href: `${base}en/archive/` },
+			{ label: "About", href: `${base}en/about/` },
+			{ label: "For authors", href: `${base}en/for-authors/` },
+		]
+	: [
+			{ label: "Početna", href: base },
+			{ label: "Aktuelni broj", href: `${base}aktuelni-broj/` },
+			{ label: "Arhiva", href: `${base}arhiva/` },
+			{ label: "O časopisu", href: `${base}o-casopisu/` },
+			{ label: "Za autore", href: `${base}uputstvo-autorima/` },
+		];
+
+const languageHref = isEnglish ? base : `${base}en/`;
+const languageLabel = isEnglish ? "SR" : "EN";
 ---
 
 <!doctype html>
@@ -31,17 +54,30 @@ const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 		<header>
 			<div class="site-container header-inner">
 				<div class="brand">
-					<a href={base}>THEORIA</a>
-					<p>Časopis Srpskog filozofskog društva</p>
+					<a href={homeHref}>THEORIA</a>
+
+					<p>
+						{
+							isEnglish
+								? "Journal of the Serbian Philosophical Society"
+								: "Časopis Srpskog filozofskog društva"
+						}
+					</p>
 				</div>
 
-				<nav aria-label="Glavna navigacija">
-					<a href={base}>Početna</a>
-					<a href={`${base}aktuelni-broj/`}>Aktuelni broj</a>
-					<a href={`${base}arhiva/`}>Arhiva</a>
-					<a href={`${base}o-casopisu/`}>O časopisu</a>
-					<a href={`${base}uputstvo-autorima/`}>Za autore</a>
-				</nav>
+				<div class="navigation">
+					<nav aria-label={isEnglish ? "Main navigation" : "Glavna navigacija"}>
+						{
+							nav.map((item) => (
+								<a href={item.href}>{item.label}</a>
+							))
+						}
+					</nav>
+
+					<a class="language" href={languageHref}>
+						{languageLabel}
+					</a>
+				</div>
 			</div>
 		</header>
 
@@ -49,7 +85,13 @@ const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 
 		<footer>
 			<div class="site-container">
-				<p>THEORIA · Srpsko filozofsko društvo · Beograd</p>
+				<p>
+					{
+						isEnglish
+							? "THEORIA · Serbian Philosophical Society · Belgrade"
+							: "THEORIA · Srpsko filozofsko društvo · Beograd"
+					}
+				</p>
 			</div>
 		</footer>
 	</body>
@@ -101,6 +143,12 @@ const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 		font-size: 0.95rem;
 	}
 
+	.navigation {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+	}
+
 	nav {
 		display: flex;
 		flex-wrap: wrap;
@@ -109,13 +157,24 @@ const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 		font-size: 0.85rem;
 	}
 
-	nav a {
+	nav a,
+	.language {
 		color: inherit;
 		text-decoration: none;
 	}
 
-	nav a:hover {
+	nav a:hover,
+	.language:hover {
 		text-decoration: underline;
+	}
+
+	.language {
+		padding-left: 20px;
+		border-left: 1px solid #bcb7ac;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
 	}
 
 	footer {
@@ -128,6 +187,17 @@ const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 		.header-inner {
 			align-items: flex-start;
 			flex-direction: column;
+		}
+
+		.navigation {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 14px;
+		}
+
+		.language {
+			padding-left: 0;
+			border-left: 0;
 		}
 	}
 </style>
