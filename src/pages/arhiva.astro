@@ -54,6 +54,18 @@ const years = [
 			label,
 		})),
 },
+{
+  year: 2023,
+  volume: 66,
+  issues: internalIssues
+    .filter((issue) => issue.year === 2023)
+    .map(({ number, href, type, label }) => ({
+      number,
+      href,
+      type,
+      label,
+    })),
+},
 ];
 ---
 

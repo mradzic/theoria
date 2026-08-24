@@ -8,6 +8,7 @@ import { issue2024_04 } from "./2024-04";
 import { issue2024_03 } from "./2024-03";
 import { issue2024_02 } from "./2024-02";
 import { issue2024_01 } from "./2024-01";
+import { issue2023_04 } from "./2023-04";
 
 export const issues = [
   {
@@ -49,5 +50,9 @@ export const issues = [
 {
   ...issue2024_01,
   slug: "2024-01",
+},
+{
+  ...issue2023_04,
+  slug: "2023-04",
 },
 ] as const;
