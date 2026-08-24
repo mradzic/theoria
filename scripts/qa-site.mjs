@@ -3,7 +3,7 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
-const BASE = "/theoria/";
+const BASE = "/";
 
 let errors = 0;
 let warnings = 0;
