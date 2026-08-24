@@ -1,39 +1,45 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { issues } from "../data/issues";
 
 const base = import.meta.env.BASE_URL.endsWith("/")
 	? import.meta.env.BASE_URL
 	: `${import.meta.env.BASE_URL}/`;
 
+const internalIssues = issues.map((issue) => ({
+	year: issue.year,
+	volume: issue.volume,
+	number: issue.number,
+	href: `${base}brojevi/${issue.slug}/`,
+	type: "internal",
+	label: "Sadržaj",
+}));
+
 const years = [
 	{
 		year: 2026,
 		volume: 69,
-		issues: [
-			{
-	number: 2,
-	href: `${base}brojevi/2026-02/`,
-	type: "internal",
-	label: "Sadržaj",
-},
-			{
-	number: 1,
-	href: `${base}brojevi/2026-01/`,
-	type: "internal",
-	label: "Sadržaj",
-},
-		],
+		issues: internalIssues
+			.filter((issue) => issue.year === 2026)
+			.map(({ number, href, type, label }) => ({
+				number,
+				href,
+				type,
+				label,
+			})),
 	},
 	{
 		year: 2025,
 		volume: 68,
 		issues: [
-			{
-				number: 4,
-				href: "https://drive.google.com/file/d/1H2ig__ell6SZaiUpFzjF2gU2BQJLzzf5/view",
-				type: "external",
-				label: "PDF",
-			},
+			...internalIssues
+				.filter((issue) => issue.year === 2025)
+				.map(({ number, href, type, label }) => ({
+					number,
+					href,
+					type,
+					label,
+				})),
 			{
 				number: 3,
 				href: "https://drive.google.com/file/d/1ZMeTFU9I0Mul9o_TDbahZNCdZLNTW6_U/view",
