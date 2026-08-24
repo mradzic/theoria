@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/editorial-pages.css";
 ---
 
 <BaseLayout
@@ -7,7 +8,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 	description="About Theoria, journal of the Serbian Philosophical Society"
 	lang="en"
 >
-	<main class="container">
+	<main class="editorial-page">
 		<section class="heading">
 			<p class="label">THEORIA</p>
 			<h1>About</h1>
@@ -149,117 +150,3 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 		</section>
 	</main>
 </BaseLayout>
-
-<style>
-	.container {
-		width: min(1120px, calc(100% - 48px));
-		margin: 0 auto;
-	}
-
-	.heading {
-		padding: 90px 0 70px;
-		border-bottom: 1px solid #bcb7ac;
-	}
-
-	.label {
-		margin: 0 0 22px;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.72rem;
-		font-weight: 700;
-		letter-spacing: 0.17em;
-	}
-
-	h1 {
-		margin: 0;
-		font-size: clamp(4rem, 9vw, 7rem);
-		line-height: 0.95;
-		font-weight: 400;
-		letter-spacing: -0.04em;
-	}
-
-	.lead {
-		max-width: 760px;
-		margin: 35px 0 0;
-		font-size: 1.35rem;
-		line-height: 1.55;
-	}
-
-	.identifiers {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		border-bottom: 1px solid #bcb7ac;
-	}
-
-	.identifiers > div {
-		padding: 36px 30px 36px 0;
-	}
-
-	.identifiers > div + div {
-		padding-left: 30px;
-		border-left: 1px solid #bcb7ac;
-	}
-
-	.value {
-		margin: 0;
-		font-size: 1.6rem;
-	}
-
-	.section {
-		display: grid;
-		grid-template-columns: 220px 1fr;
-		gap: 60px;
-		padding: 65px 0;
-		border-bottom: 1px solid #bcb7ac;
-	}
-
-	.prose {
-		max-width: 760px;
-	}
-
-	.prose p {
-		font-size: 1.1rem;
-		line-height: 1.7;
-	}
-
-	.prose h2 {
-		margin: 0;
-		font-size: 2rem;
-		font-weight: 400;
-	}
-
-	.prose a {
-		color: inherit;
-	}
-
-	.board {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 0 50px;
-	}
-
-	.board p {
-		margin: 0;
-		padding: 20px 0;
-		border-bottom: 1px solid #c9c4ba;
-		line-height: 1.5;
-	}
-
-	@media (max-width: 800px) {
-		.identifiers,
-		.board {
-			grid-template-columns: 1fr;
-		}
-
-		.identifiers > div,
-		.identifiers > div + div {
-			padding: 28px 0;
-			border-left: 0;
-			border-bottom: 1px solid #bcb7ac;
-		}
-
-		.section {
-			grid-template-columns: 1fr;
-			gap: 25px;
-		}
-	}
-</style>

@@ -1,423 +1,517 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/editorial-pages.css";
 ---
 
 <BaseLayout
 	title="Za autore — Theoria"
-	description="Uputstvo za autore časopisa Theoria"
+	description="Uputstvo za autore, pravila predaje, citiranja, recenziranja i uređivačke politike časopisa Theoria"
 >
-	<main class="container">
+	<main class="editorial-page">
 		<section class="heading">
-			<p class="label">THEORIA</p>
+			<p class="label">THEORIA · ZA AUTORE</p>
+
 			<h1>Za autore</h1>
 
 			<p class="lead">
-				Uputstvo za pripremu i predaju rukopisa časopisu
-				<em>Theoria</em>.
+				Uputstvo za pripremu i predaju rukopisa, pravila
+				citiranja, recenzentski postupak i osnovne uređivačke
+				politike časopisa <em>Theoria</em>.
 			</p>
 		</section>
 
-		<section class="quick-info">
+		<section class="quick-info" aria-label="Osnovni podaci">
 			<div>
 				<p class="label">OBIM</p>
-				<p class="value">do 35.000 znakova</p>
-				<p class="small">sa razmacima · 1,5 autorskih tabaka</p>
-			</div>
-
-			<div>
-				<p class="label">JEZICI</p>
-				<p class="value">srpski · engleski</p>
-				<p class="small">srpski tekstovi latinicom</p>
+				<p class="value">Do 35.000 znakova</p>
+				<p class="small">sa razmacima · najviše 1,5 autorski tabak</p>
 			</div>
 
 			<div>
 				<p class="label">RECENZIJA</p>
-				<p class="value">dvostruko anonimna</p>
-				<p class="small">najmanje dva recenzenta</p>
+				<p class="value">Double-blind</p>
+				<p class="small">najmanje dva nezavisna recenzenta</p>
+			</div>
+
+			<div>
+				<p class="label">NAKNADE</p>
+				<p class="value">Bez naknade</p>
+				<p class="small">predaja, obrada i objavljivanje su besplatni</p>
 			</div>
 		</section>
 
-		<section class="submit">
-			<div>
-				<p class="label">PREDAJA RUKOPISA</p>
-			</div>
-
-			<div class="submit-content">
-				<h2>Rukopisi se dostavljaju elektronski.</h2>
-
-				<p>
-					Dokument treba poslati u Microsoft Word formatu
-					(<code>.doc</code> ili <code>.docx</code>) na adresu
-					uredništva:
-				</p>
-
-				<a class="email" href="mailto:theoria.redakcija@gmail.com">
-					theoria.redakcija@gmail.com
-				</a>
-
-				<p class="note">
-					<em>Theoria</em> izlazi četiri puta godišnje — u martu,
-					junu, septembru i decembru.
-				</p>
-			</div>
-		</section>
-
-		<section class="requirements">
-			<div>
-				<p class="label">PRIPREMA RUKOPISA</p>
-			</div>
+		<section class="section" id="predaja">
+			<p class="label">PREDAJA RUKOPISA</p>
 
 			<div class="prose">
-				<h2>Osnovni tehnički zahtevi</h2>
+				<h2>Šta Theoria objavljuje</h2>
+
+				<p>
+					<em>Theoria</em> izlazi četiri puta godišnje — u martu,
+					junu, septembru i decembru. Časopis objavljuje originalne
+					naučne radove iz filozofije, prvenstveno na srpskom i
+					engleskom jeziku, kao i pregledne članke, prevode
+					filozofskih tekstova, kritičke osvrte na filozofska dela i
+					prikaze filozofskih knjiga.
+				</p>
+
+				<p>
+					Tekstovi na srpskom jeziku predaju se i objavljuju
+					latinicom. Svi rukopisi podležu dvostruko anonimnom
+					recenzentskom postupku.
+				</p>
+
+				<p>
+					Rukopis mora predstavljati originalan doprinos autora,
+					ne sme biti prethodno objavljen i ne sme se istovremeno
+					razmatrati za objavljivanje u drugom časopisu.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" id="tehnicki-zahtevi">
+			<p class="label">PRIPREMA RUKOPISA</p>
+
+			<div class="prose">
+				<h2>Struktura i tehnički zahtevi</h2>
+
+				<p>
+					U gornjem levom uglu, pre naslova rada, navode se ime i
+					prezime autora. Naslov rada treba da bude napisan velikim
+					slovima.
+				</p>
+
+				<p>
+					Nakon naslova slede apstrakt od <strong>80–150 reči</strong>
+					i <strong>3–8 ključnih reči</strong>. Na kraju glavnog
+					teksta, a pre bibliografije, navode se ime i prezime autora
+					i njegova institucija ili druga afilijacija.
+				</p>
+
+				<p>
+					Ako je rad pisan na srpskom jeziku, nakon bibliografije
+					navode se ime i prezime autora, naslov rada, rezime
+					(<em>summary</em>) i ključne reči (<em>keywords</em>) na
+					engleskom jeziku. Ako je rad pisan na engleskom jeziku,
+					odgovarajući podaci navode se na srpskom jeziku.
+				</p>
+
+				<p>
+					Napomene se daju kao fusnote, a ne kao endnote. Za
+					naglašavanje se koristi kurziv, a ne masna slova, osim u
+					naslovima i međunaslovima.
+				</p>
+
+				<p>
+					U radovima na srpskom jeziku imena stranih autora treba
+					transliterisati, a pri prvom pominjanju ime autora treba
+					navesti i u izvornom obliku u zagradi.
+				</p>
+
+				<h2>Format fajla</h2>
 
 				<ul>
-					<li>Times New Roman, 12 pt.</li>
-					<li>Prored 1,5.</li>
-					<li>Bez numeracije stranica.</li>
+					<li>Microsoft Word dokument: <code>.doc</code> ili <code>.docx</code>;</li>
+					<li>Times New Roman, 12 pt;</li>
+					<li>prored 1,5;</li>
+					<li>bez numeracije stranica;</li>
 					<li>
-						Naslov rada ispisuje se velikim slovima.
-					</li>
-					<li>
-						Pre naslova, u gornjem levom uglu, navode se ime i
-						prezime autora.
-					</li>
-					<li>
-						Posle naslova slede apstrakt od 80 do 150 reči i
-						3–8 ključnih reči.
-					</li>
-					<li>
-						Napomene se daju kao fusnote, ne kao endnote.
-					</li>
-					<li>
-						Za isticanje se koristi kurziv, a ne bold, osim u
-						naslovima i podnaslovima.
+						najviše 35.000 znakova sa razmacima, odnosno do 1,5
+						autorski tabak.
 					</li>
 				</ul>
-
-				<h2>Podaci na kraju rada</h2>
-
-				<p>
-					Pre bibliografije navode se ime i prezime autora i
-					afilijacija.
-				</p>
-
-				<p>
-					Ako je rad na srpskom, posle bibliografije daju se ime
-					autora, naslov rada, rezime i ključne reči na engleskom.
-					Ako je rad na engleskom, odgovarajući podaci daju se na
-					srpskom.
-				</p>
-
-				<p>
-					U tekstovima na srpskom imena stranih autora navode se
-					transkribovano, a pri prvom pojavljivanju ime se u
-					zagradi navodi i u izvornom obliku.
-				</p>
 			</div>
 		</section>
 
-		<section class="references">
-			<div>
-				<p class="label">REFERENCE</p>
-			</div>
+		<section class="section" id="citiranje">
+			<p class="label">CITIRANJE</p>
 
 			<div class="prose">
-				<h2>Citatni stil</h2>
+				<h2>Pravila navođenja referenci</h2>
 
 				<p>
-					Upućivanje u tekstu daje se u zagradi, u obliku
-					<code>(Autor godina: strana)</code>.
+					U bibliografiji se navode potpuni bibliografski podaci.
+					U glavnom tekstu koristi se skraćeni oblik
+					<strong>(autor godina: strana)</strong>.
 				</p>
 
 				<div class="example">
 					<p class="example-label">KNJIGA</p>
+
 					<p>
-						Jorati, Julia (2017). <em>Leibniz on Causation and Agency</em>
-						(Cambridge: Cambridge University Press).
+						Jorati, Julia (2017). <em>Leibniz on Causation and
+						Agency</em> (Cambridge: Cambridge University Press).
 					</p>
-					<p class="citation-example">(Jorati 2017: 43)</p>
+
+					<p class="citation-example">
+						U tekstu: (Jorati 2017: 43)
+					</p>
+				</div>
+
+				<div class="example">
+					<p class="example-label">KNJIGA NA SRPSKOM</p>
+
+					<p>
+						Cekić, Nenad (2019). <em>Utilitarizam i Bentamova
+						filozofija morala</em> (Novi Sad: Akademska knjiga).
+					</p>
+
+					<p class="citation-example">
+						U tekstu: (Cekić 2019: 54)
+					</p>
 				</div>
 
 				<div class="example">
 					<p class="example-label">ČLANAK U ČASOPISU</p>
+
 					<p>
-						Ognjanović, Zoran (2025). “The Leibniz’s Role in the
-						Development of the Theory of Probability,”
+						Tsouna, Voula (2016). „Epicurean Preconceptions“,
+						<em>Phronesis</em> 61: 160–221.
+					</p>
+
+					<p class="citation-example">
+						U tekstu: (Tsouna 2016: 169)
+					</p>
+				</div>
+
+				<div class="example">
+					<p class="example-label">ČLANAK U THEORIA</p>
+
+					<p>
+						Ognjanović, Zoran (2025). „The Leibniz’s Role in the
+						Development of the Theory of Probability“,
 						<em>Theoria</em> 68(4): 6–19.
 					</p>
-					<p class="citation-example">(Ognjanović 2025: 11)</p>
+
+					<p class="citation-example">
+						U tekstu: (Ognjanović 2025: 11)
+					</p>
 				</div>
 
 				<div class="example">
 					<p class="example-label">POGLAVLJE U ZBORNIKU</p>
+
 					<p>
-						Frege, Gotlob (1992). “O smislu i nominatumu,” u
-						Aleksandar Pavković i Živan Lazović (ur.),
-						<em>Ogledi o jeziku i značenju</em>
-						(Beograd: FDS): 35–49.
+						Bennett, Jonathan (1996). „Spinoza's Metaphysics“,
+						in Don Garrett (ed.), <em>The Cambridge Companion to
+						Spinoza</em> (Cambridge: Cambridge University Press):
+						61–88.
 					</p>
-					<p class="citation-example">(Frege 1992: 35)</p>
+
+					<p class="citation-example">
+						U tekstu: (Bennett 1996: 87)
+					</p>
+				</div>
+
+				<div class="example">
+					<p class="example-label">POGLAVLJE NA SRPSKOM</p>
+
+					<p>
+						Frege, Gotlob (1992). „O smislu i nominatumu“, u
+						Aleksandar Pavković i Živan Lazović (prir.),
+						<em>Ogledi o jeziku i značenju</em> (Beograd: FDS):
+						35–49.
+					</p>
+
+					<p class="citation-example">
+						U tekstu: (Frege 1992: 35)
+					</p>
 				</div>
 
 				<div class="example">
 					<p class="example-label">INTERNET IZVOR</p>
+
 					<p>
-						Navode se autor, naslov, adresa stranice i datum
-						pristupa. U tekstu se koristi oblik
-						<code>(Autor godina)</code>.
+						Ridge, Michael (2019). „Moral Non-Naturalism“,
+						<em>The Stanford Encyclopedia of Philosophy</em>,
+						Edward N. Zalta (ed.),
+						https://plato.stanford.edu/archives/fall2019/entries/moral-non-naturalism
+						(20. avgust 2019).
+					</p>
+
+					<p class="citation-example">
+						U tekstu: (Ridge 2019)
 					</p>
 				</div>
 			</div>
 		</section>
 
-		<section class="review">
-			<div>
-				<p class="label">RECENZENTSKI POSTUPAK</p>
-			</div>
-
-			<div class="prose">
-				<h2>Dvostruko anonimna recenzija</h2>
-
-				<p>
-					Svaki rukopis koji prođe početnu uredničku procenu
-					recenziraju najmanje dva stručnjaka. Identitet autora
-					nije poznat recenzentima, niti je autorima poznat
-					identitet recenzenata.
-				</p>
-
-				<p>
-					Recenzenti se biraju prema stručnoj kompetenciji i ne
-					smeju biti iz iste institucije kao autor niti njegovi
-					skorašnji koautori.
-				</p>
-
-				<p>
-					U redovnim okolnostima recenzentski postupak traje do
-					četiri nedelje; u tehnički naročito zahtevnim
-					slučajevima može trajati do tri meseca.
-				</p>
-
-				<p>
-					Konačnu odluku o prihvatanju ili odbijanju rukopisa
-					donosi glavna i odgovorna urednica.
-				</p>
-			</div>
-		</section>
-
-		<section class="ethics">
-			<div>
-				<p class="label">ETIKA PUBLIKOVANJA</p>
-			</div>
+		<section class="section" id="pre-predaje">
+			<p class="label">PRE PREDAJE</p>
 
 			<div class="prose">
 				<h2>Obaveze autora</h2>
 
 				<p>
-					Predajom rada autori potvrđuju da je rukopis originalan,
-					da nije ranije objavljen i da se istovremeno ne razmatra
-					za objavljivanje u drugom časopisu.
+					Pre slanja rukopisa autori treba da provere da su
+					ispunjeni sledeći uslovi:
+				</p>
+
+				<ul>
+					<li>
+						rukopis je originalan, nije prethodno objavljen i nije
+						istovremeno ponuđen drugom časopisu;
+					</li>
+
+					<li>
+						kao koautori navedena su sva i samo ona lica koja su
+						značajno doprinela sadržaju rada;
+					</li>
+
+					<li>
+						doprinos drugih lica naveden je u zahvalnici ili
+						odgovarajućoj napomeni;
+					</li>
+
+					<li>
+						ako je rad nastao u okviru istraživačkog projekta,
+						navedeni su naziv i oznaka projekta i puna oznaka
+						finansirajuće institucije;
+					</li>
+
+					<li>
+						ako je verzija rada ranije izložena na naučnom skupu,
+						navedeni su odgovarajući podaci o tom izlaganju;
+					</li>
+
+					<li>
+						svi preuzeti tekstovi, jednačine, slike, podaci i
+						tabele jasno su označeni i pravilno navedeni;
+					</li>
+
+					<li>
+						odeljak Literatura ili Reference sadrži samo radove
+						koji su zaista citirani u tekstu;
+					</li>
+
+					<li>
+						naveden je svaki finansijski ili drugi značajan sukob
+						interesa koji bi mogao uticati na rezultate ili njihovo
+						tumačenje.
+					</li>
+				</ul>
+
+				<p>
+					Predajom rukopisa autori prihvataju uređivačku politiku
+					časopisa <em>Theoria</em>.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" id="recenzija">
+			<p class="label">RECENZENTSKI POSTUPAK</p>
+
+			<div class="prose">
+				<h2>Dvostruko anonimno recenziranje</h2>
+
+				<p>
+					Svaki rukopis recenziraju najmanje dva recenzenta.
+					Recenzenti postupaju nezavisno. Autorima je nepoznat
+					identitet recenzenata, a recenzentima identitet autora.
 				</p>
 
 				<p>
-					Svi izvori moraju biti potpuno i pravilno navedeni, a
-					autori su dužni da prijave finansijski ili drugi
-					relevantan sukob interesa.
+					Recenzenti se biraju prema relevantnoj stručnosti za
+					ocenu rukopisa. Ne mogu biti iz iste institucije kao
+					autori niti njihovi skoriji koautori. Predlozi autora u
+					pogledu konkretnih recenzenata ne uzimaju se u obzir.
 				</p>
+
+				<h2>Tok postupka</h2>
+
+				<p>
+					Pre slanja na recenziju uredništvo obavlja početnu procenu
+					da li rukopis svojim oblikom i tematskim okvirom odgovara
+					profilu časopisa.
+				</p>
+
+				<p>
+					U redovnim okolnostima postupak recenziranja traje najviše
+					četiri nedelje, a u tehnički zahtevnim slučajevima može
+					trajati do tri meseca. Prema dosadašnjoj politici
+					časopisa, period od prijema rada do objavljivanja u proseku
+					iznosi oko 90 dana.
+				</p>
+
+				<h2>Razrešavanje nesaglasnosti</h2>
+
+				<p>
+					Ako autor iznese ozbiljne i obrazložene primedbe na
+					recenziju, uredništvo razmatra da li je recenzija
+					objektivna i da li zadovoljava akademske standarde. Ako
+					postoji sumnja u njen kvalitet ili objektivnost, angažuju
+					se dodatni recenzenti.
+				</p>
+
+				<p>
+					Dodatni recenzent može biti angažovan i kada su preporuke
+					recenzenata međusobno oprečne ili nepomirljive.
+					Konačnu odluku o prihvatanju rada donosi glavni i
+					odgovorni urednik.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" id="etika">
+			<p class="label">ETIKA PUBLIKOVANJA</p>
+
+			<div class="prose">
+				<h2>Etički standardi</h2>
+
+				<p>
+					Sumnju na kršenje etičkih standarda ili drugu
+					nepravilnost može uredniku ili uredništvu prijaviti
+					pojedinac ili institucija uz dostavljanje verodostojnih
+					informacija. Tokom postupka dokazi se tretiraju kao
+					poverljivi, a licima na koja se navodi odnose omogućava
+					se da odgovore na optužbe.
+				</p>
+
+				<p>
+					Uredništvo prilikom razmatranja etički spornih postupaka
+					sledi smernice Komiteta za etiku publikovanja (COPE).
+				</p>
+
+				<h2>Plagijarizam</h2>
 
 				<p>
 					<em>Theoria</em> ne objavljuje plagirane radove.
-					Uredništvo se pri rešavanju etičkih sporova rukovodi
-					smernicama Komiteta za etiku publikovanja (COPE).
+					Plagijarizam obuhvata preuzimanje tuđih ideja ili reči
+					bez jasnog navođenja izvora, uključujući doslovno ili
+					gotovo doslovno preuzimanje i parafraziranje kojim se
+					prikriva izvor.
+				</p>
+
+				<p>
+					Isto se odnosi na neoznačeno preuzimanje jednačina,
+					podataka i tabela iz drugih izvora. Rukopis sa jasnim
+					indicijama plagijarizma odbija se. Ako se plagijarizam
+					utvrdi nakon objavljivanja, rad se povlači u skladu sa
+					politikom povlačenja časopisa.
+				</p>
+
+				<h2>Povlačenje radova</h2>
+
+				<p>
+					Objavljeni rad može biti povučen u slučaju plagijarizma,
+					lažnog autorstva, istovremenog ili višestrukog
+					objavljivanja, manipulacije podacima, povrede autorskih
+					prava ili druge ozbiljne zloupotrebe. Rad se može povući
+					i kada sadrži ozbiljne i brojne greške koje nije moguće
+					ispraviti običnom ispravkom.
+				</p>
+
+				<p>
+					Povlačenje se objavljuje kao zasebna urednička jedinica.
+					U doiSerbia uspostavlja se veza između originalnog rada i
+					obaveštenja o povlačenju, dok originalni dokument ostaje
+					dostupan uz jasno označavanje njegovog statusa.
+				</p>
+
+				<h2>Sukob interesa</h2>
+
+				<p>
+					Autori su dužni da prijave sve potencijalne finansijske
+					ili druge sukobe interesa relevantne za sadržaj rada,
+					način finansiranja istraživanja i, kada postoji sponzor,
+					njegovu ulogu u pripremi rada.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" id="pristup-i-prava">
+			<p class="label">PRISTUP I PRAVA</p>
+
+			<div class="prose">
+				<h2>Otvoreni pristup</h2>
+
+				<p>
+					<em>Theoria</em> je časopis u otvorenom pristupu.
+					Objavljeni sadržaj dostupan je korisnicima bez naknade.
+					Objavljene sveske arhiviraju se u digitalnom depozitu
+					Narodne biblioteke Srbije i u repozitorijumu doiSerbia.
+				</p>
+
+				<h2>Naknade autorima</h2>
+
+				<p>
+					Časopis ne naplaćuje naknadu za predaju rukopisa,
+					njegovu obradu niti objavljivanje članka. Ne postoje
+					skrivene naknade.
+				</p>
+
+				<h2>Autorska prava i licenca</h2>
+
+				<p>
+					Autori zadržavaju autorska prava nad objavljenim
+					člankom i izdavaču daju neekskluzivno pravo da članak
+					objavi i distribuira.
+				</p>
+
+				<p>
+					Objavljeni članci distribuiraju se pod licencom
+					<strong>
+						Creative Commons Autorstvo – Nekomercijalno 4.0
+						International (CC BY-NC 4.0)
+					</strong>.
+				</p>
+
+				<p>
+					Dopušteno je kopiranje, distribucija i prerada rada u
+					nekomercijalne svrhe uz pravilno navođenje autora,
+					izvora i licence i označavanje eventualnih izmena.
+				</p>
+
+				<h2>Samoarhiviranje</h2>
+
+				<p>
+					Autori mogu deponovati preprint, recenziranu verziju
+					rukopisa (postprint) i objavljenu verziju rada u
+					institucionalne ili tematske repozitorijume, na lične
+					veb stranice, stranice institucija i akademske mreže.
+				</p>
+
+				<p>
+					Pri tome treba navesti pun bibliografski opis objavljenog
+					rada i postaviti veze ka DOI oznaci članka i korišćenoj
+					licenci.
+				</p>
+
+				<h2>Odricanje od odgovornosti</h2>
+
+				<p>
+					Stavovi izneti u objavljenim radovima ne predstavljaju
+					nužno stavove urednika ili članova uredništva.
+					Autori snose pravnu i moralnu odgovornost za ideje
+					iznete u svojim radovima.
+				</p>
+			</div>
+		</section>
+
+		<section class="submit" id="slanje">
+			<p class="label">SLANJE RUKOPISA</p>
+
+			<div class="submit-content">
+				<h2>Predaja rada</h2>
+
+				<p>
+					Rukopis pripremljen prema ovom uputstvu šalje se
+					elektronskom poštom uredništvu časopisa.
+				</p>
+
+				<a
+					class="email"
+					href="mailto:theoria.redakcija@gmail.com"
+				>
+					theoria.redakcija@gmail.com
+				</a>
+
+				<p class="note">
+					Molimo autore da pre slanja još jednom provere tehničke
+					zahteve, bibliografske reference i podatke o afilijaciji,
+					finansiranju i mogućem sukobu interesa.
 				</p>
 			</div>
 		</section>
 	</main>
 </BaseLayout>
-
-<style>
-	.container {
-		width: min(1120px, calc(100% - 48px));
-		margin: 0 auto;
-	}
-
-	.heading {
-		padding: 90px 0 70px;
-		border-bottom: 1px solid #bcb7ac;
-	}
-
-	.label {
-		margin: 0 0 22px;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.72rem;
-		font-weight: 700;
-		letter-spacing: 0.17em;
-	}
-
-	.heading h1 {
-		margin: 0;
-		font-size: clamp(4rem, 9vw, 7rem);
-		line-height: 0.95;
-		font-weight: 400;
-		letter-spacing: -0.04em;
-	}
-
-	.lead {
-		max-width: 760px;
-		margin: 35px 0 0;
-		font-size: 1.35rem;
-		line-height: 1.55;
-	}
-
-	.quick-info {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		border-bottom: 1px solid #bcb7ac;
-	}
-
-	.quick-info > div {
-		padding: 36px 30px 36px 0;
-	}
-
-	.quick-info > div + div {
-		padding-left: 30px;
-		border-left: 1px solid #bcb7ac;
-	}
-
-	.quick-info .label {
-		margin-bottom: 12px;
-	}
-
-	.value {
-		margin: 0;
-		font-size: 1.4rem;
-	}
-
-	.small {
-		margin: 7px 0 0;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.78rem;
-	}
-
-	.submit,
-	.requirements,
-	.references,
-	.review,
-	.ethics {
-		display: grid;
-		grid-template-columns: 220px 1fr;
-		gap: 60px;
-		padding: 65px 0;
-		border-bottom: 1px solid #bcb7ac;
-	}
-
-	.submit-content,
-	.prose {
-		max-width: 760px;
-	}
-
-	.submit h2,
-	.prose h2 {
-		margin: 0 0 24px;
-		font-size: 2rem;
-		font-weight: 400;
-	}
-
-	.submit-content p,
-	.prose p,
-	.prose li {
-		font-size: 1.08rem;
-		line-height: 1.7;
-	}
-
-	.prose h2:not(:first-child) {
-		margin-top: 45px;
-	}
-
-	.prose ul {
-		margin: 0;
-		padding-left: 22px;
-	}
-
-	.prose li {
-		margin-bottom: 8px;
-	}
-
-	.email {
-		display: inline-block;
-		margin: 10px 0 20px;
-		color: inherit;
-		text-decoration: none;
-		font-size: 1.4rem;
-		border-bottom: 1px solid #181818;
-	}
-
-	.note {
-		margin-top: 26px;
-	}
-
-	code {
-		font-family: "SFMono-Regular", Consolas, monospace;
-		font-size: 0.9em;
-	}
-
-	.example {
-		padding: 26px 0;
-		border-top: 1px solid #c9c4ba;
-	}
-
-	.example:last-child {
-		border-bottom: 1px solid #c9c4ba;
-	}
-
-	.example p {
-		margin: 0;
-	}
-
-	.example-label {
-		margin-bottom: 12px !important;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.72rem !important;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-	}
-
-	.citation-example {
-		margin-top: 10px !important;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.85rem !important;
-	}
-
-	@media (max-width: 800px) {
-		.heading {
-			padding: 60px 0 50px;
-		}
-
-		.quick-info {
-			grid-template-columns: 1fr;
-		}
-
-		.quick-info > div,
-		.quick-info > div + div {
-			padding: 28px 0;
-			border-left: 0;
-			border-bottom: 1px solid #bcb7ac;
-		}
-
-		.quick-info > div:last-child {
-			border-bottom: 0;
-		}
-
-		.submit,
-		.requirements,
-		.references,
-		.review,
-		.ethics {
-			grid-template-columns: 1fr;
-			gap: 25px;
-		}
-
-		.email {
-			font-size: 1.05rem;
-		}
-	}
-</style>
