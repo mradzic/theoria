@@ -28,6 +28,14 @@ const services = [
     href: "https://erihplus.hkdir.no/journal?id=509782",
   },
   {
+  name: "Dimensions",
+  description:
+    lang === "en"
+      ? "International research and citation database"
+      : "Međunarodna istraživačka i citatna baza",
+  href: "https://app.dimensions.ai/",
+},
+  {
     name: "CEEOL",
     description:
       lang === "en"
@@ -96,7 +104,7 @@ const services = [
 
   .indexing-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .indexing-item {
