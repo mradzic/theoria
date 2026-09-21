@@ -43,7 +43,8 @@ const nav = isEnglish
 			{ label: "Arhiva", href: `${base}arhiva/` },
 			{ label: "O časopisu", href: `${base}o-casopisu/` },
 			{ label: "Za autore", href: `${base}uputstvo-autorima/` },
-		];
+		{ label: "Poziv za učešće", href: `${base}poziv-za-ucesce/` },
+	];
 
 const pathname = Astro.url.pathname;
 
@@ -115,6 +116,10 @@ if (isEnglish) {
 	) {
 		languageHref =
 			`${base}en/for-authors/`;
+	} else if (
+		relativePath === "poziv-za-ucesce/"
+	) {
+		languageHref = `${base}en/`;
 	} else if (
 		relativePath.startsWith("brojevi/")
 	) {

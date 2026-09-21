@@ -30,6 +30,39 @@ import IndexingStrip from "../components/IndexingStrip.astro";
 		</section>
 
 		<section
+			class="conference-call"
+			aria-labelledby="conference-call-title"
+		>
+			<div class="conference-call-heading">
+				<p class="label">POZIV ZA UČEŠĆE</p>
+
+				<p class="conference-call-date">24. DECEMBAR 2026.</p>
+			</div>
+
+			<div class="conference-call-body">
+				<h2 id="conference-call-title">
+					Pedeset godina časopisa <em>Theoria</em>
+				</h2>
+
+				<div class="conference-call-copy">
+					<p>
+						Pozivamo vas da učestvujete na naučnom skupu povodom
+						pedeset godina neprekidnog izlaženja časopisa
+						<em>Theoria</em>.
+					</p>
+
+					<a
+						class="issue-link"
+						href={`${base}poziv-za-ucesce/`}
+					>
+						<span>Pročitajte poziv</span>
+						<span class="arrow" aria-hidden="true">→</span>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section
 			class="current"
 			aria-labelledby="current-issue-title"
 		>
@@ -136,6 +169,63 @@ letter-spacing: 0;
 
 	.current {
 		padding-bottom: 96px;
+	}
+
+	/* CONFERENCE CALL */
+
+	.conference-call {
+		padding: 30px 0 78px;
+		border-bottom: 1px solid var(--rule);
+	}
+
+	.conference-call-heading {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+
+		padding-bottom: 20px;
+		border-bottom: 1px solid var(--rule);
+	}
+
+	.conference-call-date {
+		margin: 0;
+
+		font-family: var(--sans);
+		font-size: 0.72rem;
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: 0.12em;
+	}
+
+	.conference-call-body {
+		display: grid;
+		grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.7fr);
+		gap: clamp(50px, 8vw, 110px);
+
+		padding-top: 40px;
+	}
+
+	.conference-call-body h2 {
+		max-width: 700px;
+		margin: 0;
+
+		font-size: clamp(2.6rem, 5vw, 5rem);
+		font-weight: 400;
+		line-height: 0.98;
+		letter-spacing: -0.035em;
+	}
+
+	.conference-call-copy {
+		align-self: end;
+		max-width: 330px;
+	}
+
+	.conference-call-copy p {
+		margin: 0 0 28px;
+
+		font-size: 1.1rem;
+		line-height: 1.55;
 	}
 
 	.current-heading {
@@ -246,6 +336,10 @@ letter-spacing: 0;
 			padding: 70px 0 68px;
 		}
 
+		.conference-call-body {
+			gap: 45px;
+		}
+
 		.current-body {
 			gap: 45px;
 		}
@@ -270,6 +364,22 @@ letter-spacing: 0;
 
 		.current {
 			padding-bottom: 72px;
+		}
+
+		.conference-call {
+			padding: 24px 0 62px;
+		}
+
+		.conference-call-heading {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 14px;
+		}
+
+		.conference-call-body {
+			grid-template-columns: 1fr;
+			gap: 36px;
+			padding-top: 34px;
 		}
 
 		.current-heading {
